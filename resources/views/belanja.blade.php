@@ -2,7 +2,7 @@
 
 @section('container')
 
-@include("konten.iklan")
+{{-- @include("konten.iklan") --}}
 
 
     <ul class="flex justify-between ">
@@ -29,8 +29,7 @@
                         </div>
                         <div class="text-justify p-2">
                             @include("komponen_kecil.star")
-                            <h1 class="text-sm">Beras Kepala / Beras Super
-                                25 KG - Beras Putih / Pulen</h1>
+                            <h1 class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae amet perferendis rem natus harum officia voluptas dignissimos ad odio quo!</h1>
 
                             <h4 class="font-bold text-lg">RP.250.000</h4>
                             <div class="flex justify-center w-full">
@@ -51,7 +50,7 @@
     </div>
 </div>
 
-@include("konten.iklan")
+{{-- @include("konten.iklan") --}}
 
 <div class="my-4">
     <ul class=" ">
@@ -64,7 +63,35 @@
 </div>
 
 
-    @include("konten.card")
+<div class="drop-shadow-[0_5px_2px_rgba(0,0,0,0.25)] mt-3 flex justify-center items-center">
+    <ul class="grid grid-cols-4 gap-4">
+         @foreach ($nama_barang as $nb )
+
+
+            <li>
+                <a href="/belanjas/{{ $nb->slug }}">
+                    <div class="bg-white w-250 h-400 rounded-xl items-center inline-block drop-shadow-md">
+                        <div class="flex justify-center m-2 w-230 ">
+                            <img src="https://source.unsplash.com/500x400?{{ $nb->kategori }}" alt="gambar" class="rounded-xl object-cover ">
+                        </div>
+                        <div class="text-justify ">
+                            @include("komponen_kecil.star")
+                            <h1 class="text-sm p-2">{{Str::limit($nb->body, 100)}}</h1>
+
+                            <h4 class="font-bold text-lg absolute bottom-10 p-2">Rp. {{ $nb->harga }}</h4>
+                            <div class="flex justify-center w-full absolute bottom-3">
+                                <button class="bg-green_button rounded-full px-10 py-1 text-white">BELI SEKARANG</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+            </li>
+        @endforeach
+
+    </ul>
+</div>
+
 
 
 

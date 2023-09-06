@@ -1,6 +1,6 @@
 <div class="bg-green2/100">
 
-    <div class="nav_list flex justify-center gap-5 p-5">
+    <div class="flex justify-center gap-5 p-2">
         <div class="inline-block mx-2">
             <div class="flex">
                 <img src="images/logo_sembako.png" alt="logo-sembako" class="w-150">
@@ -13,8 +13,8 @@
         </div>
 
         <!-- MENUUUUU -->
-        <div class="mx-2">
-            <ul class=" inline-block mt-5" >
+        <div class="mx-2 mt-4">
+            <ul class=" inline-block" >
                 <li class="mb-4">
                     <ul class="flex gap-10 justify-center">
                         <li>
@@ -51,14 +51,32 @@
             </ul>
         </div>
 
+
         <div class="my-auto">
-            <ul class="flex">
-                <li>
-                    <a href="#">LOGIN</a>
-                </li>
-                <li>
-                    <a href="#">DAFTAR</a>
-                </li>
+            <ul class="flex gap-4">
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Hello, {{ auth()->user()->name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/dashboard/{{ auth()->user()->id }}"><i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        </form>
+                    </ul>
+                  </li>
+                    @else
+                    <li class="/login">
+                        <a href="/login"><i class="bi bi-arrow-right-square"></i>  LOGIN</a>
+                    </li>
+                    <li>
+                        <a href="/register">DAFTAR</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

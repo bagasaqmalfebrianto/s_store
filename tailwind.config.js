@@ -28,6 +28,7 @@ export default {
                 green2: "#d2e2d7", // Custom warna green
             },
             height: {
+                300: "300px",
                 400: "400px",
                 502: "502px",
                 500: "500px",
@@ -57,6 +58,14 @@ export default {
                 '50':'50px',
                 '100' : '100px ',
               },
+            left:{
+                '13':'13px',
+                '15':'15px',
+            },
+            bottom:{
+                '13':'13px',
+                '15':'15px',
+            },
         },
     },
     plugins: [require("daisyui")],
