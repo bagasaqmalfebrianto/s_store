@@ -36,12 +36,12 @@
                     <ul class="flex">
                         <li>
                             <a href="">
-                                <img src="images/dpc.png" alt="" class="w-100">
+                                <img src="images/dpc.png" alt="" class="w-20">
                             </a>
                         </li>
                         <li>
                             <a href="">
-                                <img src="images/dinas_pertanian.png" alt="" class="w-50 mt-3">
+                                <img src="images/dinas_pertanian.png" alt="" class="w-10 mt-3">
                             </a>
                         </li>
                     </ul>
