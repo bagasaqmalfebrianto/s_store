@@ -18,19 +18,19 @@
                 <li class="mb-4">
                     <ul class="flex gap-10 justify-center">
                         <li>
-                            <a href="/home">Menu</a>
+                            <a href="/home" class="text-white-600 hover:text-green_button font-medium ">Menu</a>
                         </li>
                         <li>
-                            <a href="/belanja">Belanja Sekarang</a>
+                            <a href="/belanja" class="text-white-600 hover:text-green_button font-medium">Belanja Sekarang</a>
                         </li>
                         <li>
-                            <a href="/tentang_kami">Tentang Kami</a>
+                            <a href="/tentang_kami" class="text-white-600 hover:text-green_button font-medium">Tentang Kami</a>
                         </li>
                         <li>
-                            <a href="/katalog">Katalog</a>
+                            <a href="/katalog" class="text-white-600 hover:text-green_button font-medium">Katalog</a>
                         </li>
                         <li>
-                            <a href="/berita">Berita</a>
+                            <a href="/berita" class="text-white-600 hover:text-green_button font-medium">Berita</a>
                         </li>
                     </ul>
                 </li>
@@ -71,10 +71,10 @@
                   </li>
                     @else
                     <li class="/login">
-                        <a href="/login"><i class="bi bi-arrow-right-square"></i>  LOGIN</a>
+                        <a href="/login" class="hover:text-green_button font-medium"><i class="bi bi-arrow-right-square "></i>  LOGIN</a>
                     </li>
                     <li>
-                        <a href="/register">DAFTAR</a>
+                        <a href="/register" class="hover:text-green_button font-medium">DAFTAR</a>
                     </li>
                 @endauth
             </ul>
