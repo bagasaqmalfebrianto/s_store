@@ -60,7 +60,7 @@
                 <hr class="border-t border-black">
 
                 <div class="py-3">
-                    <h1>{{ $barang->body }}</h1>
+                    <h1>{!! $barang->body !!}</h1>
                 </div>
             </div>
         </div>

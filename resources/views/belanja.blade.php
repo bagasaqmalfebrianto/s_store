@@ -71,12 +71,20 @@
             <li>
                 <a href="/belanjas/{{ $nb->slug }}">
                     <div class="bg-white w-250 h-400 rounded-xl items-center inline-block drop-shadow-md">
-                        <div class="flex justify-center m-2 w-230 ">
-                            <img src="https://source.unsplash.com/500x400?{{ $nb->kategori }}" alt="gambar" class="rounded-xl object-cover ">
+                        @if($nb->image)
+                        <div style="max-height: 200px; overflow:hidden">
+
+                            <img src="{{ asset('storage/'. $nb->image) }}" alt="gambar" class="img-fluid rounded-xl">
                         </div>
+                            @else
+                            <img src="https://source.unsplash.com/500x400?{{ $nb->kategori }}" alt="gambar" class="rounded-xl max-height: 200px">
+                        @endif
+
                         <div class="text-justify ">
-                            @include("komponen_kecil.star")
-                            <h1 class="text-sm p-2">{{Str::limit($nb->body, 100)}}</h1>
+
+                            <h1 class="font-bold text-lg px-2">{{ $nb->nama }}</h1>
+
+                            <h1 class="text-sm p-2">{{Str::limit($nb->body, 150)}}</h1>
 
                             <h4 class="font-bold text-lg absolute bottom-10 p-2">Rp. {{ $nb->harga }}</h4>
                             <div class="flex justify-center w-full absolute bottom-3">
@@ -104,7 +112,6 @@
             </ul>
         </div>
     </div>
-
 
 
 @endsection

@@ -1,11 +1,16 @@
 <?php
 
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
+use App\Models\Barang;
+use App\Models\Iklan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\RegisterController;
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IklanController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -21,13 +26,17 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('', function () {
     return view('home',[
-        'title'=>'Home'
+        'title'=>'Home',
+
     ]);
 });
 
 Route::get('/home', function () {
     return  view('home',[
-        'title'=>'Home']);
+        'title'=>'Home',
+        'nama_barang'=>Barang::all(),
+        'iklan' =>Iklan::all()
+    ]);
 });
 
 Route::get('/belanja', [BarangController::class,'index']);
@@ -57,6 +66,9 @@ Route::get('/register',[RegisterController::class,'index'])->middleware('guest')
 
 Route::Post('/register',[RegisterController::class,'store']);
 
+//Logout
+Route::post('/logout',[LoginController::class,'logout'])->middleware('auth');
+
 
 
 //Dashboard
@@ -65,6 +77,16 @@ Route::get('/dashboard',function(){
 })->middleware('auth');
 
 Route::resource('/dashboard/barang', DashboardController::class)->middleware('auth');
+
+//iklan
+
+Route::resource('/dashboard/iklan', IklanController::class)->middleware('auth');
+
+//Cart
+Route::resource('/pembeli/cart', CartController::class)->middleware('auth');
+
+//Berita
+Route::resource('/dashboard/berita',BeritaController::class)->middleware('auth');
 
 
 

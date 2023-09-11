@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -14,9 +15,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.barang.index',[
+
+        if(auth()->user()->is_admin){
+            return view('dashboard.barang.index',[
+                'barangku'=>Barang::all()
+            ]);
+        }
+            return view('dashboard.barang.index',[
             'barangku'=>Barang::where('user_id',auth()->user()->id)->get()
-        ]);
+            ]);
     }
 
 
@@ -45,8 +52,13 @@ class DashboardController extends Controller
             'slug'=>'required|unique:barangs',
             'harga'=>'required',
             'category_id'=>'required',
+            'image'=>'image|file|max:1024',
             'body'=>'required'
         ]);
+
+        if($request->file('image')){
+            $validatedData['image']=$request->file('image')->store('post-images');
+        }
 
         $validatedData['user_id']=auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
@@ -65,6 +77,7 @@ class DashboardController extends Controller
     {
         //
     }
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -89,6 +102,7 @@ class DashboardController extends Controller
             'nama'=>'required|max:255',
             'harga'=>'required',
             'category_id'=>'required',
+            'image'=>'image|file|max:1024',
             'body'=>'required'
         ];
 
@@ -97,6 +111,14 @@ class DashboardController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+
+        if($request->file('image')){
+            // kalo gambar lama ada maka dihapus
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image']=$request->file('image')->store('post-images');
+        }
 
         $validatedData['user_id']=auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
@@ -114,7 +136,7 @@ class DashboardController extends Controller
     public function destroy(Barang $barang)
     {
         //
-        
+
 
         Barang::destroy($barang->id);
 

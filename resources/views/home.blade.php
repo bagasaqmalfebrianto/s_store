@@ -3,43 +3,44 @@
 @section('container')
 
 
-
-        {{-- @include("konten.iklan") --}}
-
     <!-- ISI -->
-
-
 
                 <ul class="flex justify-between">
                     <li>
                         <a href="#" class="font-bold text-lg text-green_button">PRODUK</a>
                     </li>
+
                     <li>
                         <a href="#" class="font-bold text-lg text-green_button">SELENGKAPNYA</a>
-
                     </li>
                 </ul>
             <hr class="border-t border-black">
 
-
-
             <div class="drop-shadow-[0_5px_2px_rgba(0,0,0,0.25)] mt-3 flex justify-center items-center">
                 <ul class="grid grid-cols-4 gap-4">
-                     {{-- @foreach ($nama_barang as $nb )
+                     @foreach ($nama_barang as $nb )
 
 
                         <li>
-                            <a href="">
-                                <div class="bg-white w-250 h-600 rounded-xl items-center inline-block drop-shadow-md">
-                                    <div class="flex justify-center m-2 w-230 ">
-                                        <img src="images/bagas.png" alt="gambar" class="rounded-xl object-cover ">
-                                    </div>
-                                    <div class="text-justify p-2">
-                                        @include("komponen_kecil.star")
-                                        <h1 class="text-sm">{{Str::limit($nb->body, 100)}}</h1>
+                            <a href="/belanjas/{{ $nb->slug }}">
+                                <div class="bg-white w-250 h-400 rounded-xl items-center inline-block drop-shadow-md">
+                                    @if($nb->image)
+                                    <div style="max-height: 200px; overflow:hidden">
 
-                                        <h4 class="font-bold text-lg">Rp. {{ $nb->harga }}</h4>
-                                        <div class="flex justify-center w-full">
+                                        <img src="{{ asset('storage/'. $nb->image) }}" alt="gambar" class="img-fluid rounded-xl">
+                                    </div>
+                                        @else
+                                        <img src="https://source.unsplash.com/500x400?{{ $nb->kategori }}" alt="gambar" class="rounded-xl max-height: 200px">
+                                    @endif
+
+                                    <div class="text-justify ">
+
+                                        <h1 class="font-bold text-lg px-2">{{ $nb->nama }}</h1>
+
+                                        <h1 class="text-sm p-2">{{Str::limit($nb->body, 130)}}</h1>
+
+                                        <h4 class="font-bold text-lg absolute bottom-10 p-2">Rp. {{ $nb->harga }}</h4>
+                                        <div class="flex justify-center w-full absolute bottom-3">
                                             <button class="bg-green_button rounded-full px-10 py-1 text-white">BELI SEKARANG</button>
                                         </div>
                                     </div>
@@ -47,20 +48,20 @@
                                 </div>
                             </a>
                         </li>
-                    @endforeach --}}
+                    @endforeach
 
                 </ul>
             </div>
 
-
             <!--SELENGKAPNYA -->
             <div class="flex justify-center m-10">
-                <div class="bg-green_button px-10 py-2 rounded-full text-white">
-                    <ul>
-                        <li>
-                            <a href="#">Selengkapnya</a>
-                        </li>
-                    </ul>
+                <div >
+                    <input type="hidden" id="offset" value="0">
+                    <input type="hidden" id="limit" value="3">
+
+                    <!-- Tombol Selengkapnya -->
+                    <button class="bg-green_button px-10 py-2 rounded-full text-white" id="show-more">Selengkapnya</button>
+
                 </div>
             </div>
 
@@ -72,14 +73,20 @@
 
             <div class="flex justify-center m-10">
                 <div class="bg-green_button px-10 py-2 rounded-full text-white">
-                    <ul>
-                        <li>
-                            <a href="#">Selengkapnya</a>
-                        </li>
-                    </ul>
+
+                        <button id="show-more">Selengkapnya</button>
+
                 </div>
             </div>
 
+
+
+
+
+
 @endsection
+
+
+
 
 
