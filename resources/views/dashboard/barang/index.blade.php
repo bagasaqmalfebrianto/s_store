@@ -7,7 +7,7 @@
     </div>
 
 
-    <a href="{{ url('/dashboard/barangku/create') }}" class="btn btn-primary mb-3">Create New Post</a>
+    <a href="{{ url('/dashboard/barang/create') }}" class="btn btn-primary mb-3">Create New Post</a>
 
 
         <div class="table-responsive small">
@@ -34,7 +34,7 @@
                 <td>{{ $br->excerpt }}</td>
 
                 <td>
-                    <a href="/dashboard/barangku/{{ $br->slug }}"><i class="bi bi-archive"></i></a>
+                    <a href="/dashboard/barang/{{ $br->slug }}"><i class="bi bi-archive"></i></a>
                     <a href="/dashboard/barang/{{ $br->slug }}/edit"><i class="bi bi-pencil-square"></i></a>
                     <form action="/dashboard/barang/{{ $br->slug }}" class="d-inline" method="post">
                         @method('delete')

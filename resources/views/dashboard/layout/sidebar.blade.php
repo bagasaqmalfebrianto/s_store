@@ -19,6 +19,30 @@
             </a>
           </li>
 
+          @can('admin')
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
+              <span>Administrator</span>
+            </h6>
+
+            <ul class="nav flex-column ">
+                <li class="nav-item ">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/iklan*')? 'active' : '' }}
+                    " href="/dashboard/iklan">
+                    Kelola Iklan
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav flex-column ">
+                <li class="nav-item ">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/berita*')? 'active' : '' }}
+                    " href="/dashboard/berita">
+                    Kelola Berita
+                    </a>
+                </li>
+            </ul>
+        @endcan
+
         <hr class="my-3">
 
         <ul class="nav flex-column mb-auto">
@@ -28,12 +52,11 @@
               Settings
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
-              <i class="bi bi-door-closed"></i>
-              Sign out
-            </a>
-          </li>
+
+          <form action="/logout" method="post">
+            @csrf
+            <button type="submit" class="nav-link px-3"><i class="bi bi-box-arrow-right"></i> Logout</button>
+            </form>
         </ul>
       </div>
     </div>
