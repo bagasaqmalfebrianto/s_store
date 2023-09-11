@@ -23,21 +23,21 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Barang::factory(12)->create();
 
         User::factory(3)->create();
 
         Category::Create([
-            'nama'=>'Beras'
+            'nama' => 'Beras'
         ]);
 
         Category::Create([
-            'nama'=>'Sayur'
+            'nama' => 'Sayur'
         ]);
 
         Category::Create([
-            'nama'=>'Minyak'
+            'nama' => 'Minyak'
         ]);
 
+        Barang::factory(12)->create();
     }
 }
