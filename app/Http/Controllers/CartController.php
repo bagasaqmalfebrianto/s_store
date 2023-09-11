@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public $total_price = 0;
     public function index()
     {
-        //
+        if (!Auth::user()) {
+            abort(403);
+        }
         return view('pembeli.cart', [
             'title' => "Cart",
-            'carts' => Cart::where('user_id', auth()->user()->id)->get()
+            'carts' => Cart::where('user_id', auth()->user()->id)->get(),
+            'total_price' => $this->total_price
         ]);
     }
 

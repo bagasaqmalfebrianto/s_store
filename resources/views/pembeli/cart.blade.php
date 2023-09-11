@@ -42,9 +42,13 @@
                                 class="increment bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</a>
                         </div>
                         <span class="price text-center w-1/5 font-semibold text-sm">Rp. {{ $cart->barang->harga }}</span>
-                        <span class="subtotal text-center w-1/5 font-semibold text-sm">Rp.
-                            {{ $cart->barang->harga * $cart->jumlah }}</span>
+                        <span class="subtotal text-center w-1/5 font-semibold text-sm">
+                            Rp. {{ $cart->barang->harga * $cart->jumlah }}
+                        </span>
                     </div>
+                    @php
+                        $total_price += $cart->barang->harga * $cart->jumlah;
+                    @endphp
                 @endforeach
 
             </div>
@@ -54,12 +58,12 @@
                 <div class="flex justify-between mt-2">
                     <span class="font-normal text-sm">Total harga</span>
                     <span class="font-normal text-sm">{{ $carts->count() }}</span>
-                    <span class="font-normal text-sm">Rp. {{ $cart->barang->harga }}</span>
+                    <span class="total1 font-normal text-sm">Rp. {{ $total_price }}</span>
                 </div>
                 <div class="mt-2">
                     <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                         <span class="font-bold text-green_button">Total</span>
-                        <span class="font-bold">Rp. {{ $cart->barang->harga }}</span>
+                        <span class="total2 font-bold">Rp. {{ $total_price }}</span>
                     </div>
                     <div class="flex justify-center">
                         <button class="bg-green_button text-white px-10 py-2 rounded-md">Bayar Sekarang</button>
@@ -76,7 +80,11 @@
         const decrementButtons = document.querySelectorAll('.decrement');
         const quantityElements = document.querySelectorAll('.item-quantity');
         const hargaElements = document.querySelectorAll('.subtotal');
+        const totalPrice1 = document.querySelector('.total1');
+        const totalPrice2 = document.querySelector('.total2');
         const itemPrice = document.querySelectorAll('.price');
+
+        let totalPrice = 0;
 
         incrementButtons.forEach((button, index) => {
             button.addEventListener('click', function() {
@@ -89,6 +97,7 @@
                 // Memperbarui nilai di input
                 quantityElements[index].value = quantity;
                 updateHarga(index, quantity);
+                totalHarga();
             });
         });
 
@@ -106,15 +115,29 @@
                     quantityElements[index].value = quantity;
 
                     updateHarga(index, quantity);
+                    totalHarga();
                 }
             });
         });
 
         function updateHarga(index, quantity) {
             const price = parseInt(itemPrice[index].textContent.replace('Rp. ', ''))
-            console.log(price);
+            // console.log(price);
             const subtotal = price * quantity;
             hargaElements[index].textContent = `Rp. ${subtotal.toFixed(2)}`;
+        }
+
+        function totalHarga() {
+            totalPrice = 0;
+
+            hargaElements.forEach((element) => {
+                const subtotal = parseInt(element.textContent.replace('Rp. ', ''));
+                totalPrice += subtotal;
+            });
+            console.log(totalPrice);
+
+            totalPrice1.textContent = `Rp. ${totalPrice.toFixed(2)}`;
+            totalPrice2.textContent = `Rp. ${totalPrice.toFixed(2)}`;
         }
     });
 </script>
