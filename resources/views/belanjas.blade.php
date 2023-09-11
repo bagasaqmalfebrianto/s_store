@@ -34,13 +34,14 @@
                                 <h1>KUANTITAS</h1>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <a href="#"
-                                    class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</a>
+                                <a href="javascript:void(0)"
+                                    class="decrement bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</a>
                                 <input type="text" name="jumlah"
-                                    class="border border-gray-300 w-12 text-center focus:outline-none focus:ring focus:border-blue-300 px-5"
-                                    value="1">
-                                <a href="#"
-                                    class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</a>
+                                    class="item-quantity border border-gray-300 w-12 text-center focus:outline-none focus:ring focus:border-blue-300 px-5"
+                                    value="1" min="1">
+
+                                <a href="javascript:void(0)"
+                                    class="increment bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</a>
                             </div>
 
                             <a href=""><i class="bi bi-cart-plus text-30"></i></a>
@@ -79,3 +80,39 @@
 
     </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const incrementButtons = document.querySelectorAll('.increment');
+        const decrementButtons = document.querySelectorAll('.decrement');
+        const quantityElements = document.querySelectorAll('.item-quantity');
+
+        incrementButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                // Mengambil nilai saat ini dari input
+                let quantity = parseInt(quantityElements[index].value);
+
+                // Menambahkan 1 ke nilai
+                quantity++;
+
+                // Memperbarui nilai di input
+                quantityElements[index].value = quantity;
+            });
+        });
+
+        decrementButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                // Mengambil nilai saat ini dari input
+                let quantity = parseInt(quantityElements[index].value);
+
+                // Memastikan nilai tidak kurang dari 1
+                if (quantity > 1) {
+                    // Mengurangkan 1 dari nilai
+                    quantity--;
+
+                    // Memperbarui nilai di input
+                    quantityElements[index].value = quantity;
+                }
+            });
+        });
+    });
+</script>

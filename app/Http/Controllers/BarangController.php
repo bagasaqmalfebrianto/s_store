@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Barang;
-
+use App\Models\Iklan;
 use Illuminate\Http\Request;
 use function Termwind\render;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +28,8 @@ class BarangController extends Controller
         }
         return view('belanja', [
             'title' => 'belanja',
-            'nama_barang' => $barang
+            'nama_barang' => $barang,
+            'iklans' => Iklan::all()
         ]);
     }
 
@@ -37,7 +38,7 @@ class BarangController extends Controller
         $this->barang1 = $barang;
         return view('belanjas', [
             'title' => 'belanjas',
-            'barang' => $this->barang1
+            'barang' => $this->barang1,
         ]);
     }
 

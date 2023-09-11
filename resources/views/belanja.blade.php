@@ -6,30 +6,39 @@
     <div class="carousel w-full">
 
         {{-- Contoh Kode --}}
-        {{-- @foreach ($iklans as $key => $iklan)
-        @if ($loop->first)
-        <div id="slide{{ $key }}" class="carousel-item relative w-full">
-            <img src="{{ asset('images/'.$iklan->image) }}" class="w-full" />
-            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide{{ $iklan->count() }}" class="btn btn-circle">❮</a>
-                <a href="#slide{{ $key + 1 }}" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        @endif
+        @foreach ($iklans as $key => $iklan)
+            @if ($loop->first)
+                <div id="slide{{ $key }}" class="carousel-item relative w-full">
+                    <img src="{{ asset('images/' . $iklan->image) }}" class="w-full" />
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide{{ $iklan->count() }}" class="btn btn-circle">❮</a>
+                        <a href="#slide{{ $key + 1 }}" class="btn btn-circle">❯</a>
+                    </div>
+                </div>
+            @endif
 
-        <div id="slide{{ $key }}" class="carousel-item relative w-full">
-            <img src="{{ asset('images/promo-2.png') }}" class="w-full" />
-            <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide{{ $key - 1 }}" class="btn btn-circle">❮</a>
-                <a href="#slide{{ $key + 1 }}" class="btn btn-circle">❯</a>
+            <div id="slide{{ $key }}" class="carousel-item relative w-full">
+                <img src="{{ asset('images/promo-2.png') }}" class="w-full" />
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide{{ $key - 1 }}" class="btn btn-circle">❮</a>
+                    <a href="#slide{{ $key + 1 }}" class="btn btn-circle">❯</a>
+                </div>
             </div>
-        </div>
 
-        @endforeach --}}
+            @if ($loop->last)
+                <div id="slide{{ $key }}" class="carousel-item relative w-full">
+                    <img src="{{ asset('images/promo-3.png') }}" class="w-full" />
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <a href="#slide{{ $key - 1 }}" class="btn btn-circle">❮</a>
+                        <a href="#slide{{ $key == 0 ? $key : 0 }}" class="btn btn-circle">❯</a>
+                    </div>
+                </div>
+            @endif
+        @endforeach
         {{-- End --}}
 
 
-        <div id="slide1" class="carousel-item relative w-full">
+        {{-- <div id="slide1" class="carousel-item relative w-full">
             <img src="{{ asset('images/promo-1.jpeg') }}" class="w-full" />
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide3" class="btn btn-circle">❮</a>
@@ -47,9 +56,9 @@
             <img src="{{ asset('images/promo-3.png') }}" class="w-full" />
             <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href="#slide2" class="btn btn-circle">❮</a>
-                <a href="#slide3" class="btn btn-circle">❯</a>
+                <a href="#slide1" class="btn btn-circle">❯</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <ul class="flex justify-between ">

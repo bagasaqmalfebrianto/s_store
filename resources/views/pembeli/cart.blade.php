@@ -32,20 +32,18 @@
                             </div>
                         </div>
                         <div class="flex justify-center w-1/5">
-                            <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-                                <path
-                                    d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                            </svg>
+                            <a href="javascript:void(0)"
+                                class="decrement bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</a>
 
-                            <input class="mx-2 border text-center w-8" type="text" value="1">
+                            <input class="item-quantity mx-2 border text-center w-8" type="number"
+                                value="{{ $cart->jumlah }}" min="1">
 
-                            <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-                                <path
-                                    d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                            </svg>
+                            <a href="javascript:void(0)"
+                                class="increment bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</a>
                         </div>
-                        <span class="text-center w-1/5 font-semibold text-sm">Rp. {{ $cart->barang->harga }}</span>
-                        <span class="text-center w-1/5 font-semibold text-sm">Rp. {{ $cart->barang->harga }}</span>
+                        <span class="price text-center w-1/5 font-semibold text-sm">Rp. {{ $cart->barang->harga }}</span>
+                        <span class="subtotal text-center w-1/5 font-semibold text-sm">Rp.
+                            {{ $cart->barang->harga * $cart->jumlah }}</span>
                     </div>
                 @endforeach
 
@@ -72,3 +70,51 @@
         </div>
     </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const incrementButtons = document.querySelectorAll('.increment');
+        const decrementButtons = document.querySelectorAll('.decrement');
+        const quantityElements = document.querySelectorAll('.item-quantity');
+        const hargaElements = document.querySelectorAll('.subtotal');
+        const itemPrice = document.querySelectorAll('.price');
+
+        incrementButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                // Mengambil nilai saat ini dari input
+                let quantity = parseInt(quantityElements[index].value);
+
+                // Menambahkan 1 ke nilai
+                quantity++;
+
+                // Memperbarui nilai di input
+                quantityElements[index].value = quantity;
+                updateHarga(index, quantity);
+            });
+        });
+
+        decrementButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                // Mengambil nilai saat ini dari input
+                let quantity = parseInt(quantityElements[index].value);
+
+                // Memastikan nilai tidak kurang dari 1
+                if (quantity > 1) {
+                    // Mengurangkan 1 dari nilai
+                    quantity--;
+
+                    // Memperbarui nilai di input
+                    quantityElements[index].value = quantity;
+
+                    updateHarga(index, quantity);
+                }
+            });
+        });
+
+        function updateHarga(index, quantity) {
+            const price = parseInt(itemPrice[index].textContent.replace('Rp. ', ''))
+            console.log(price);
+            const subtotal = price * quantity;
+            hargaElements[index].textContent = `Rp. ${subtotal.toFixed(2)}`;
+        }
+    });
+</script>
