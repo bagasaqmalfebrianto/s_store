@@ -12,16 +12,25 @@ class Barang extends Model
 
     protected $guarded = ['id'];
 
+    protected $with = ['category', 'user'];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function getRouteKeyName(){
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'barang_id');
+    }
+
+    public function getRouteKeyName()
+    {
         return 'slug';
     }
 

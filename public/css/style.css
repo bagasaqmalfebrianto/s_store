@@ -1,4 +1,4 @@
-.iklan .carousel-item {
+/* .iklan .carousel-item {
     min-height: 40vh;
     background-position: center;
     background-size: cover;
@@ -52,7 +52,6 @@ ol.carousel-indicators {
     list-style: none;
 }
 
-/*********************** Arrow Indication *************************/
 .iklan .carousel-controls {
     position: absolute;
     left: 50%;
@@ -135,3 +134,5 @@ ol.carousel-indicators {
         transform: translateX(0px);
     }
 }
+
+*/
