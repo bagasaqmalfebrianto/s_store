@@ -48,6 +48,7 @@ Route::get('/tentang_kami', function () {
 });
 
 Route::get('/belanjas/{barang:slug}', [BarangController::class, 'show']);
+Route::post('/belanjas/{barang:slug}', [BarangController::class, 'store']);
 
 Route::get('/cart', [CartController::class, 'index']);
 

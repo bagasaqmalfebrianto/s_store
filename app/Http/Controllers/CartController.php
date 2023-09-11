@@ -13,8 +13,9 @@ class CartController extends Controller
     public function index()
     {
         //
-        return view('pembeli.cart',[
-            'title' => "Cart"
+        return view('pembeli.cart', [
+            'title' => "Cart",
+            'carts' => Cart::where('user_id', auth()->user()->id)->get()
         ]);
     }
 

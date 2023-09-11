@@ -21,32 +21,35 @@
                             class="rounded-xl object-cover w-20 h-auto">
                     </div>
                 </div>
-                <div class="w-2/3">
-                    <h1 class="text-24 font-bold">{{ $barang->nama }}</h1>
-                    <h1 class="text-18 pt-5 text-green_button font-bold">Rp. {{ $barang->harga }}</h1>
+                <form action="{{ url('/belanjas/' . $barang->slug) }}" method="POST">
+                    @csrf
+                    <div class="w-2/3">
+                        <h1 class="text-24 font-bold">{{ $barang->nama }}</h1>
+                        <h1 class="text-18 pt-5 text-green_button font-bold">Rp. {{ $barang->harga }}</h1>
 
 
-                    <div class="flex gap-3 mt-5">
+                        <div class="flex gap-3 mt-5">
 
-                        <div class="mt-1 font-bold">
-                            <h1>KUANTITAS</h1>
+                            <div class="mt-1 font-bold">
+                                <h1>KUANTITAS</h1>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <a href="#"
+                                    class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</a>
+                                <input type="text" name="jumlah"
+                                    class="border border-gray-300 w-12 text-center focus:outline-none focus:ring focus:border-blue-300 px-5"
+                                    value="1">
+                                <a href="#"
+                                    class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</a>
+                            </div>
+
+                            <a href=""><i class="bi bi-cart-plus text-30"></i></a>
+
+                            <button type="submit" class="bg-green_button text-white px-10 py-2 rounded-md">Pesan
+                                Sekarang</button>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button
-                                class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</button>
-                            <input type="text"
-                                class="border border-gray-300 w-12 text-center focus:outline-none focus:ring focus:border-blue-300 px-5"
-                                value="1">
-                            <button
-                                class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</button>
-                        </div>
-
-                        <a href=""><i class="bi bi-cart-plus text-30"></i></a>
-
-                        <a href="{{ url('/cart') }}" class="bg-green_button text-white px-10 py-2 rounded-md">Pesan
-                            Sekarang</a>
                     </div>
-                </div>
+                </form>
             </div>
 
 

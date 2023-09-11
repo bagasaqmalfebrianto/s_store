@@ -29,6 +29,11 @@ class Barang extends Model
         return $this->hasMany(OrderItem::class, 'barang_id');
     }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'barang_id');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

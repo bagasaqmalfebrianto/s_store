@@ -47,7 +47,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function barang(){
+    public function barang()
+    {
         return $this->hasMany(Barang::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
     }
 }
