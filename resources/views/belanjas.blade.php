@@ -9,12 +9,16 @@
             <div class="flex">
                 <div class="w-1/3">
 
-                    <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar" class="rounded-xl object-cover w-250 h-auto">
+                    <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar"
+                        class="rounded-xl object-cover w-250 h-auto">
                     {{-- <img src="/images/bagas.png" alt="" class="w-250 h-auto"> --}}
                     <div class="flex pt-2">
-                        <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar" class="rounded-xl object-cover w-20 h-auto">
-                        <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar" class="rounded-xl object-cover w-20 h-auto px-2">
-                        <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar" class="rounded-xl object-cover w-20 h-auto">
+                        <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar"
+                            class="rounded-xl object-cover w-20 h-auto">
+                        <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar"
+                            class="rounded-xl object-cover w-20 h-auto px-2">
+                        <img src="https://source.unsplash.com/500x400?{{ $barang->kategori }}" alt="gambar"
+                            class="rounded-xl object-cover w-20 h-auto">
                     </div>
                 </div>
                 <div class="w-2/3">
@@ -28,14 +32,19 @@
                             <h1>KUANTITAS</h1>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</button>
-                            <input type="text" class="border border-gray-300 w-12 text-center focus:outline-none focus:ring focus:border-blue-300 px-5" value="1">
-                            <button class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</button>
+                            <button
+                                class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">-</button>
+                            <input type="text"
+                                class="border border-gray-300 w-12 text-center focus:outline-none focus:ring focus:border-blue-300 px-5"
+                                value="1">
+                            <button
+                                class="bg-blue-500 text-white px-3 py-1 rounded-full focus:outline-none focus:ring focus:border-blue-300">+</button>
                         </div>
 
                         <a href=""><i class="bi bi-cart-plus text-30"></i></a>
 
-                        <button class="bg-green_button text-white px-10 py-1 rounded-md">Pesan Sekarang</button>
+                        <a href="{{ url('/cart') }}" class="bg-green_button text-white px-10 py-2 rounded-md">Pesan
+                            Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -66,5 +75,4 @@
         </div>
 
     </div>
-
 @endsection

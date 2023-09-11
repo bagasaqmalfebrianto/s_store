@@ -16,21 +16,28 @@ class BarangController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request)
     {
-        return  view('belanja',[
-            'title'=>'belanja',
-            "nama_barang" => Barang::inRandomOrder()->get()
+        $barang = Barang::inRandomOrder()->paginate(8);
+        if ($request->ajax()) {
+            $view = view('child', ['nama_barang' => $barang])->render();
+
+            return response()->json(['html' => $view]);
+        }
+        return view('belanja', [
+            'title' => 'belanja',
+            'nama_barang' => $barang
         ]);
     }
 
-    public function show(Barang $barang){
-        return view('belanjas',[
-            'title'=>'belanjas',
-            'barang'=>$barang
+    public function show(Barang $barang)
+    {
+        return view('belanjas', [
+            'title' => 'belanjas',
+            'barang' => $barang
         ]);
     }
 
-    
+
 
 }

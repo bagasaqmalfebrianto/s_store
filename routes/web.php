@@ -25,54 +25,57 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('', function () {
-    return view('home',[
-        'title'=>'Home',
+    return view('home', [
+        'title' => 'Home',
 
     ]);
 });
 
 Route::get('/home', function () {
-    return  view('home',[
-        'title'=>'Home',
-        'nama_barang'=>Barang::all(),
-        'iklan' =>Iklan::all()
+    return view('home', [
+        'title' => 'Home',
+        'nama_barang' => Barang::all(),
+        'iklan' => Iklan::all()
     ]);
 });
 
-Route::get('/belanja', [BarangController::class,'index']);
+Route::get('/belanja', [BarangController::class, 'index'])->name('belanja.fetch');
 
 Route::get('/tentang_kami', function () {
-    return  view('tentang_kami',[
-        'title'=>'Tentang Kami']);
+    return view('tentang_kami', [
+        'title' => 'Tentang Kami'
+    ]);
 });
 
-Route::get('/belanjas/{barang:slug}', [BarangController::class,'show']);
+Route::get('/belanjas/{barang:slug}', [BarangController::class, 'show']);
+
+Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/berita', function () {
-    return  view('menu_berita',[
-        'title'=>'Berita'
+    return view('menu_berita', [
+        'title' => 'Berita'
     ]);
 });
 
 
 
 // LOGIN
-Route::get('/login',[LoginController::class,'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
-Route::post('/login',[LoginController::class,'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 //Register
-Route::get('/register',[RegisterController::class,'index'])->middleware('guest');
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 
-Route::Post('/register',[RegisterController::class,'store']);
+Route::Post('/register', [RegisterController::class, 'store']);
 
 //Logout
-Route::post('/logout',[LoginController::class,'logout'])->middleware('auth');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 
 
 
 //Dashboard
-Route::get('/dashboard',function(){
+Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
 
@@ -86,7 +89,4 @@ Route::resource('/dashboard/iklan', IklanController::class)->middleware('auth');
 Route::resource('/pembeli/cart', CartController::class)->middleware('auth');
 
 //Berita
-Route::resource('/dashboard/berita',BeritaController::class)->middleware('auth');
-
-
-
+Route::resource('/dashboard/berita', BeritaController::class)->middleware('auth');
